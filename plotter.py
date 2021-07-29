@@ -1,12 +1,19 @@
 from mathParse import MathExpression
+import matplotlib.pyplot as plt
 import numpy as np
 
 
-min = 0
-max = 10
+min = -1000
+max = 1000
 
-x = np.arange(min, max)
+x = np.linspace(min, max, 300)
 
 exp = MathExpression("5*x^3 + 2*x - 10*x^4", x)
 
-print(exp.y)
+# Resize Graph
+plt.figure(figsize=(8, 5), dpi=100)
+
+# Keyword Argument Notation
+plt.plot(x, exp.y, label='x')
+
+plt.show()
