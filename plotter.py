@@ -3,8 +3,8 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 
-min = -1000
-max = 1000
+min = -10
+max = 10
 
 x = np.linspace(min, max, 300)
 
