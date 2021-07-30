@@ -1,18 +1,20 @@
+import re
+
+
 class MathExpression:
     def __init__(self, exp, x) -> None:
-        self.x = x
+        self.exp_dict = {'x': x}
         self.exp = exp
-        modifiedExp = exp.casefold().replace(" ", "").replace("-", "+-1*")
-        self.y = self.__evaluateAddition(modifiedExp)
+        self.y = self.__evaluate()
 
     def __strValueConv(self, str):
         output = None
         countDot = str.count(".")
 
-        if str == "x":
-            output = self.x.copy()
-        elif countDot > 1:
-            print("DOT ERROR")
+        if re.match(r'[xz][0-9]*', str) is not None:
+            output = self.exp_dict[str].copy()
+        # elif countDot > 1:
+        #     print("DOT ERROR")
         elif countDot == 1:
             output = float(str)
         else:
@@ -54,3 +56,27 @@ class MathExpression:
         for e in list:
             output += self.__evaluateMultiplication(e)
         return output
+
+    def __evaluateBrackets(self, exp):
+
+        inner_pattern = r"\(([x0-9\*\+\-\/\^]*)\)"
+
+        while True:
+
+            inner_level_brackets = re.findall(
+                string=exp, pattern=inner_pattern)
+
+            if len(inner_level_brackets) < 1:
+                return exp
+            current_idx = len(self.exp_dict)
+
+            for value in inner_level_brackets:
+                exp = exp.replace(f'({value})', f'z{current_idx}')
+                self.exp_dict[f'z{current_idx}'] = self.__evaluateAddition(
+                    value)
+                current_idx += 1
+
+    def __evaluate(self):
+        modifiedExp = self.exp.casefold().replace(" ", "").replace("-", "+-1*")
+        evaluatedBracketsExp = self.__evaluateBrackets(modifiedExp)
+        return self.__evaluateAddition(evaluatedBracketsExp)

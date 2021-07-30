@@ -65,11 +65,34 @@ class MainWidget(QWidget):
         max = self.ui.spinBox_max.value()
 
         x = np.linspace(min, max, 300)
-        exp = MathExpression(exp_text, x)
 
-        self.ui.MplWidget.canvas.axes.clear()
-        self.ui.MplWidget.canvas.axes.plot(x, exp.y)
-        self.ui.MplWidget.canvas.draw()
+        errorMsg = ''
+
+        try:
+            exp = MathExpression(exp_text, x)
+            self.ui.MplWidget.canvas.axes.clear()
+            self.ui.MplWidget.canvas.axes.plot(x, exp.y)
+            self.ui.MplWidget.canvas.draw()
+
+        except:
+            errorMsg = "Please consider the available math operators:\n"
+            errorMsg += "* : Multiplication\n"
+            errorMsg += "/ : Division\n"
+            errorMsg += "+ : Addition\n"
+            errorMsg += "- : Subtraction\n"
+            errorMsg += "() : Brackets\n"
+            errorMsg += "\nEx: x + (x+2)^2 + 10*x^3"
+
+        finally:
+
+            if exp_text == '':
+                errorMsg = "Function can not be empty!"
+            msg = QMessageBox()
+            msg.setIcon(QMessageBox.Critical)
+            msg.setText("Bad Math Formula!")
+            msg.setInformativeText(errorMsg)
+            msg.setWindowTitle("Error")
+            msg.exec_()
 
 
 app = QApplication([])
