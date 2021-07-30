@@ -1,11 +1,13 @@
 import re
+import numpy as np
 
 
 class MathExpression:
     def __init__(self, exp, x) -> None:
         self.exp_dict = {'x': x}
         self.exp = exp
-        self.y = self.__evaluate()
+        self.y = np.zeros(x.shape)
+        self.y += self.__evaluate()
 
     def __strValueConv(self, str):
         output = None

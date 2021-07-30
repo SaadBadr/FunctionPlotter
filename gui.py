@@ -74,19 +74,16 @@ class MainWidget(QWidget):
             self.ui.MplWidget.canvas.axes.plot(x, exp.y)
             self.ui.MplWidget.canvas.draw()
 
-        except:
-            errorMsg = "Please consider the available math operators:\n"
-            errorMsg += "* : Multiplication\n"
-            errorMsg += "/ : Division\n"
-            errorMsg += "+ : Addition\n"
-            errorMsg += "- : Subtraction\n"
-            errorMsg += "() : Brackets\n"
-            errorMsg += "\nEx: x + (x+2)^2 + 10*x^3"
+        except Exception as e:
 
-        finally:
+            print(str(e))
 
             if exp_text == '':
                 errorMsg = "Function can not be empty!"
+            else:
+                errorMsg = "Please consider the available math operators:\n" + "* : Multiplication\n" + "/ : Division\n" + \
+                    "+ : Addition\n" + "- : Subtraction\n" + "() : Brackets\n" + \
+                    "\nEx: x + (x+2)^2 + 10*x^3"
             msg = QMessageBox()
             msg.setIcon(QMessageBox.Critical)
             msg.setText("Bad Math Formula!")
