@@ -9,7 +9,6 @@ from matplotlib.backends.backend_qt5agg import (
 from matplotlib.figure import Figure
 
 from mathParse import MathExpression
-import matplotlib.pyplot as plt
 import numpy as np
 
 
