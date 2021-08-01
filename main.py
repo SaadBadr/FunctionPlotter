@@ -84,7 +84,7 @@ class MainWidget(QWidget):
                 errorMsg = "Function can not be empty!"
             else:
                 errorMsg = "Please consider the available math operators:\n" + "* : Multiplication\n" + "/ : Division\n" + \
-                    "+ : Addition\n" + "- : Subtraction\n" + "() : Brackets\n" + \
+                    "+ : Addition\n" + "- : Subtraction\n" + "^ : Power\n" + "() : Brackets\n" + \
                     "\nEx: x + (x+2)^2 + 10*x^3"
             msg = QMessageBox()
             msg.setIcon(QMessageBox.Critical)
