@@ -57,6 +57,8 @@ class MainWidget(QWidget):
         grid_layout.addWidget(self.ui)
         self.setLayout(grid_layout)
 
+        self.move(300, 100)
+
     def update_graph(self):
         exp_text = self.ui.lineEdit_function.text()
 
