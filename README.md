@@ -37,10 +37,10 @@ NODE_ENV=production node app
 ## Screenshots
 
 * Working Examples
-![](screenshots/working1.png)
-![](screenshots/working2.png)
+![](screenshots/working1.PNG)
+![](screenshots/working2.PNG)
 
 
 * Wrong Examples
-![](screenshots/wrong1.png)
-![](screenshots/wrong2.png)
+![](screenshots/wrong1.PNG)
+![](screenshots/wrong2.PNG)
