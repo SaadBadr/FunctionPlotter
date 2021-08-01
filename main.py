@@ -39,7 +39,7 @@ class MainWidget(QWidget):
 
         QWidget.__init__(self)
 
-        designer_file = QFile("t.ui")
+        designer_file = QFile("layout.ui")
         designer_file.open(QFile.ReadOnly)
 
         loader = QUiLoader()
@@ -70,7 +70,8 @@ class MainWidget(QWidget):
         try:
             exp = MathExpression(exp_text, x)
             self.ui.MplWidget.canvas.axes.clear()
-            self.ui.MplWidget.canvas.axes.plot(x, exp.y)
+            self.ui.MplWidget.canvas.axes.plot(x, exp.y, label='F(x)')
+            self.ui.MplWidget.canvas.axes.legend()
             self.ui.MplWidget.canvas.draw()
 
         except Exception as e:
