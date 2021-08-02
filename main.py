@@ -94,7 +94,8 @@ class MainWidget(QWidget):
             msg.exec_()
 
 
-app = QApplication([])
-window = MainWidget()
-window.show()
-app.exec_()
+if __name__ == "__main__":
+    app = QApplication([])
+    window = MainWidget()
+    window.show()
+    app.exec_()
