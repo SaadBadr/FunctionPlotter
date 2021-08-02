@@ -41,7 +41,7 @@ python main.py
 
 ---
 
-## Run unit testing for math parsing class
+> Run unit testing `for MathExpression parsing`
 ```sh
 pytest mathParse_test.py
 ```
